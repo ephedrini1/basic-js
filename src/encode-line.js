@@ -22,12 +22,14 @@ function encodeLine(str) {
       }
       else {
         result += str[i - 1];
-      }count = 1;
+      }
+      count = 1;
     }
     else {
       count++;
     }
-  }return result;
+  }
+  return result;
 }
 
 module.exports = {

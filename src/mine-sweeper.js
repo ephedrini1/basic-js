@@ -3,11 +3,11 @@ const { NotImplementedError } = require('../extensions/index.js');
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
  * that don't contain a mine have a number in it that indicates the total number of mines
- * in the neighboring cells. Starting off with some arrangement of mines
+ * in the neighboring cells. Starting off with some resultangement of mines
  * we want to create a Minesweeper game setup.
  *
- * @param {Array<Array>} matrix
- * @return {Array<Array>}
+ * @param {resultay<resultay>} matrix
+ * @return {resultay<resultay>}
  *
  * @example
  * matrix = [
@@ -23,10 +23,53 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
-}
+function minesweeper( matrix ) {
+  let result = [];
+  for (let row = 0; row < matrix.length; row++) {
+    result.push([]);
+    for(let col = 0; col < matrix[row].length; col++) {
+      result[row][col] = 0;
+    }
+  }
+
+  for (let row = 0; row < matrix.length; row++) {
+    for(let col = 0; col < matrix[row].length; col++) {
+      if(matrix[row - 1]) {
+        if(matrix[row - 1][col]) { 
+          result[row][col]++;
+        }
+        if(matrix[row - 1][col + 1]) {
+          result[row][col]++;
+        }
+        if(matrix[row - 1][col - 1]) {
+          result[row][col]++;
+        }
+      }
+      if(matrix[row + 1]) {
+        if(matrix[row + 1][col - 1]) {
+          result[row][col]++;
+        }
+        if(matrix[row + 1][col + 1]) {
+          result[row][col]++;
+        }
+        if(matrix[row + 1][col]){ 
+          result[row][col]++;
+        }
+      }
+      if(matrix[col - 1]) {
+        if(matrix[row][col - 1]) {
+          result[row][col]++;
+        }
+      }
+      if(matrix[col + 1]) {
+        if(matrix[row][col + 1]) {
+          result[row][col]++;
+        } 
+      }
+      }
+    }return result;
+  }
+
 
 module.exports = {
   minesweeper
